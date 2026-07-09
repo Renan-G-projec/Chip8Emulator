@@ -17,11 +17,12 @@
 
 <style scoped>
     .window {
-        background-color: blue;
+        background-color: var(--window-bg-color);
 
         border-radius: 0.2rem;
         margin: 0;
         overflow: auto;
+        width: fit-content;
     }
 
     .header {
@@ -30,7 +31,7 @@
         justify-content: space-between;
         margin: 0;
 
-        color: white;
+        color: var(--window-title-color);
     }
 
     .header * {
@@ -41,7 +42,8 @@
         position: relative;
         border-radius: 0.2rem;
         margin: 0.3rem;
-        background-color: white;
+        background-color: var(--window-fg-color);
+        color: var(--window-content-color);
     }
 
     .content * {

@@ -1,0 +1,12 @@
+/* Ad Maiorem Dei Gloriam! */
+@import url('https://fonts.googleapis.com/css2?family=Freckle+Face&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+
+:root {
+    --window-bg-color: #641e98;
+    --window-fg-color: #c999e7;
+
+    --window-content-color: #ffffff;
+    --window-title-color: #ffffff;
+
+    font-family: "Google Sans", sans-serif;;
+}
