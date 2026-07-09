@@ -1,11 +1,9 @@
-<script setup></script>
+<script setup>
+    import Window from './components/Window.vue';
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <Window title="Test title" img="asjkldf;"><p>asdfaskdfj;aksdl</p></Window>
 </template>
 
 <style scoped></style>
