@@ -4,7 +4,7 @@
 
 <template>
   <Window title="Game" img="Game">
-    <canvas id="main-canvas"></canvas>
+    <canvas id="main-canvas" width="64" height="32"></canvas>
   </Window>
 </template>
 
@@ -14,6 +14,8 @@
       margin-bottom: 0rem;
       border-radius: 0.2rem;
       width: 45vw;
+
+      image-rendering: pixelated;
     }
 
     @media (width < 720px) {
