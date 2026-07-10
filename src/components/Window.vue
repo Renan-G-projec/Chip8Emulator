@@ -44,11 +44,8 @@
         margin: 0.3rem;
         background-color: var(--window-fg-color);
         color: var(--window-content-color);
-    }
 
-    .content * {
-        margin: 0.4rem;
-        position: relative;
+        height: fit-content;
     }
 
 </style>
