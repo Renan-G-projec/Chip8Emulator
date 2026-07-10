@@ -48,6 +48,7 @@
 
     .content * {
         margin: 0.4rem;
+        position: relative;
     }
 
 </style>
