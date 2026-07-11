@@ -48,6 +48,11 @@ export default class Chip8Engine {
                 const jmpAddress = opcode[1] << 8 | opcode[2] << 4 | opcode[3];
                 this.romStream.jump(jmpAddress);
                 break;
+            case 0x3: // Skip if VX = NN;
+                const registerVal = this.registers[opcode[1]];
+                const val = opcode[2] << 4 | opcode[3];
+                if (val === registerVal) this.romStream.getOpcode();
+                break;
         }
     }
 
