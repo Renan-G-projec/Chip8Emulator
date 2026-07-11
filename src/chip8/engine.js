@@ -67,7 +67,10 @@ export default class Chip8Engine {
                 const val06 = opcode[2] << 4 | opcode[3];
                 this.registers[opcode[1]] = val06;
                 break;
-            
+            case 0x07: // Adds NN to Vx
+                const val07 = opcode[2] << 4 | opcode[3];
+                this.registers[opcode[1]] += val07;
+                break;
         }
     }
 
