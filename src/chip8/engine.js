@@ -58,7 +58,11 @@ export default class Chip8Engine {
                 const val04 = opcode[2] << 4 | opcode[3];
                 if (val04 !== registerVal04) this.romStream.getOpcode();
                 break;
-            
+            case 0x5: // Skip if Vx == Vy;
+                const registerValX05 = this.registers[opcode[1]];
+                const registerValY05 = this.registers[opcode[2]];
+                if (registerValX05 === registerValY05) this.romStream.getOpcode();
+                break;
         }
     }
 
