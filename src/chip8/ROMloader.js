@@ -8,14 +8,17 @@ export default class ROMLoader {
     }
 
     async loadROM(file) {
-        const reader = new FileReader();
-
-        reader.readAsArrayBuffer(file);
-
-        reader.onload = () => {
-            const { result } = reader;
-            this.data = new Uint16Array(result, 2);
-            console.log(this.data);
-        }
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+    
+            reader.readAsArrayBuffer(file);
+    
+            reader.onload = () => {
+                const { result } = reader;
+                this.data = new Uint16Array(result, 2);
+                console.log(this.data);
+                resolve();
+            }
+        })
     }
 }

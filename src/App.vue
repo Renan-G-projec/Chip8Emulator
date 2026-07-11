@@ -1,6 +1,8 @@
 <script setup>
     import Window from './components/Window.vue';
     import Keyboard from './components/Keyboard.vue';
+
+    import FileInput from './components/FileInput.vue';
 </script>
 
 <template>
@@ -11,6 +13,9 @@
     
     <Keyboard class="keyboard"/>
   </div>
+
+
+  <FileInput/>
 </template>
 
 <style scoped>
