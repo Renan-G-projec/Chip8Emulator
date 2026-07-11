@@ -17,6 +17,7 @@
 
     .game-viewport {
       display: flex;
+      justify-content: space-around;
       height: fit-content;
       align-items: stretch;
     }
@@ -31,6 +32,11 @@
 
       margin: 0.4rem 0.4rem 0.4rem 0.4rem;
       vertical-align: bottom;
+    }
+
+    .keyboard {
+      width: 30vw;
+      justify-self: stretch;
     }
 
     @media (width < 720px) {

@@ -25,10 +25,11 @@
     </div>
 </template>
 
-<style scoped>
+<style>
 
     .window {
         height: 100%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: stretch;
@@ -46,7 +47,19 @@
         height: 100%;
     }
 
-    .keyboard-keys, .keyboard-key {
-        margin: 0.9rem;
+    .keyboard-key {
+        margin: 0.2rem;
+        background-color: var(--keyboard-key-bg-color);
+        color: var(--keyboard-key-color);
+        border: none;
+        border-radius: 0.2rem;
+
+        cursor: pointer;
+
+        transition: background-color 0.2 ease-in-out;
+    }
+
+    .keyboard-key:hover {
+        background-color: var(--keyboard-key-bg-color-hover);
     }
 </style>

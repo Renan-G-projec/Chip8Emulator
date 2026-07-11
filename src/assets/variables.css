@@ -8,5 +8,9 @@
     --window-content-color: #ffffff;
     --window-title-color: #ffffff;
 
+    --keyboard-key-bg-color: #702864;
+    --keyboard-key-bg-color-hover: #620d51;
+    --keyboard-key-color: #ffffff;
+
     font-family: "Google Sans", sans-serif;
 }
