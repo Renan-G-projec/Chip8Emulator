@@ -4,10 +4,11 @@
 export default class ROMLoader {
     constructor() {
         this.data = null; // Chip8 have 4096 bytes.
-        this.currentIndex = 0;
+        this.currentIndex = 512; // Starting point 
     }
 
     async loadROM(file) {
+        this.currentIndex = 512;
         return new Promise((resolve) => {
             const reader = new FileReader();
     
@@ -20,5 +21,12 @@ export default class ROMLoader {
                 resolve();
             }
         })
+    }
+
+    getOpcode() {
+        if (!this.data) throw new Error("Tryed to acess byte but no ROM is loaded.");
+        const opcode = this.data[this.currentIndex];
+        this.currentIndex++;
+        return opcode;
     }
 }

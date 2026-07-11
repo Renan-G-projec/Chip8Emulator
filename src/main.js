@@ -9,7 +9,7 @@ const app = createApp(App)
 app.mount('#app')
 
 const kb = new Keyboard();
-const roomLoader = new ROMLoader();
+const romLoader = new ROMLoader();
 
 const loadROMBtn = document.getElementById("load-rom-btn");
 const romInput = document.getElementById("rom-file-input");
@@ -19,5 +19,7 @@ loadROMBtn.addEventListener("click", async () => {
         alert("Upload a file first!");
         return;
     }
-    await roomLoader.loadROM(romInput.files[0]);
+    await romLoader.loadROM(romInput.files[0]);
+
+    setInterval(() => {console.log(romLoader.getOpcode())}, 1000);
 })
