@@ -67,9 +67,35 @@ export default class Chip8Engine {
                 const val06 = opcode[2] << 4 | opcode[3];
                 this.registers[opcode[1]] = val06;
                 break;
-            case 0x07: // Adds NN to Vx
+            case 0x7: // Adds NN to Vx
                 const val07 = opcode[2] << 4 | opcode[3];
                 this.registers[opcode[1]] += val07;
+                break;
+            case 0x8: // Math and Bit ops
+                switch (opcode[3]) {
+                    case 0x0: // Assign Vx to Vy
+                        this.registers[opcode[1]] = this.registers[opcode[2]];
+                        break;
+                    case 0x1: // Bitwise OR
+                        this.registers[opcode[1]] |= this.registers[opcode[2]];
+                        break;
+                    case 0x2: // Bitwise AND
+                        this.registers[opcode[1]] &= this.registers[opcode[2]];
+                        break;
+                    case 0x3: // Bitwise XOR
+                        this.registers[opcode[1]] ^= this.registers[opcode[2]];
+                        break;
+                    case 0x4: // Add with overflow flag
+                        const sum084 = this.registers[opcode[1]] + this.registers[opcode[2]];
+                        this.registers[15] = Number(sum084 > 255);
+                        this.registers[opcode[1]] = sum084;
+                        break;
+                    case 0x5: // Subtracts with underflow flag
+                        const hasUnderflow085 = this.registers[opcode[1]] < this.registers[opcode[2]];
+                        this.registers[15] = Number(hasUnderflow085);
+                        this.registers[opcode[1]] -= this.registers[opcode[2]];
+                        break;
+                }
                 break;
         }
     }
