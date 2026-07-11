@@ -29,4 +29,8 @@ export default class ROMLoader {
         this.currentIndex++;
         return opcode;
     }
+
+    jump(address) {
+        this.currentIndex = address;
+    }
 }

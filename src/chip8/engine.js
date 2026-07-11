@@ -41,8 +41,12 @@ export default class Chip8Engine {
 
     executeInstruction(opcode) {
         switch (opcode[0]) {
-            case 0x0:
+            case 0x0: // Clear Display
                 this.canvas.clear();
+                break;
+            case 0x1: // Jump to Address
+                const jmpAddress = opcode[1] << 8 | opcode[2] << 4 | opcode[3];
+                this.romStream.jump(jmpAddress);
                 break;
         }
     }
