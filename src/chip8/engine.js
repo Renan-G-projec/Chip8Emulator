@@ -63,6 +63,11 @@ export default class Chip8Engine {
                 const registerValY05 = this.registers[opcode[2]];
                 if (registerValX05 === registerValY05) this.romStream.getOpcode();
                 break;
+            case 0x6: // Sets Vx to NN
+                const val06 = opcode[2] << 4 | opcode[3];
+                this.registers[opcode[1]] = val06;
+                break;
+            
         }
     }
 
