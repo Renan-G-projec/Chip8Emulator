@@ -29,7 +29,7 @@ export default class Keyboard {
     }
     
     isKeyPressed(keyId) {
-
+        return this.keyState[keyId];
     }
 
 
