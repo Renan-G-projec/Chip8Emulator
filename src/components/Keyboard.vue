@@ -19,20 +19,34 @@
 
 <template>
     <div class="keyboard">
-        <Window title="Hex Keyboard" img="a">
+        <Window title="Hex Keyboard" img="a" class="window">
             <div id="keyboard-keys" class="keys-container"></div>
         </Window>
     </div>
 </template>
 
-<style>
+<style scoped>
+
+    .window {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .window .content {
+        height: 100%;
+    }
+
     .keys-container {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 0.1rem;
+
+        height: 100%;
     }
 
     .keyboard-keys, .keyboard-key {
-        margin: 0;
+        margin: 0.9rem;
     }
 </style>
