@@ -31,6 +31,8 @@ export default class Chip8Engine {
 
             this.delayTimer--;
             this.soundTimer--;
+
+            this.canvas.render();
         } catch (e) {
             alert(e);
             return;
@@ -39,7 +41,9 @@ export default class Chip8Engine {
 
     executeInstruction(opcode) {
         switch (opcode[0]) {
-            // .... 
+            case 0x0:
+                this.canvas.clear();
+                break;
         }
     }
 
