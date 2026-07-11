@@ -7,8 +7,9 @@
 
 <template>
   <div class="game-viewport">
-    <Window title="Game" img="Game">
-      <canvas id="main-canvas" width="64" height="32"></canvas>
+    <Window title="Game" img="Game" class="game-window">
+      <canvas id="main-canvas" width="64" height="32"></canvas> <br>
+      <button id="init-game-btn">Init Game</button>
     </Window>
     
     <Keyboard class="keyboard"/>
