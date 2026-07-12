@@ -138,6 +138,15 @@ export default class Chip8Engine {
                 this.registers[15] = changed; // Js transforms boolean in 0-1 vals
 
                 break
+            case 0xE:
+                switch (opcode[2]) {
+                    case 0x9: 
+                        if (this.kb.isKeyPressed(0x0F & this.registers[opcode[1]])) this.romStream.getOpcode();
+                        break;
+                    case 0xA: 
+                        if (!this.kb.isKeyPressed(0x0F & this.registers[opcode[1]])) this.romStream.getOpcode();
+                        break;
+                }
             case 0xF:
                 switch (opcode[2]) {
                     case 0x0:
