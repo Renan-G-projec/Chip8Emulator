@@ -19,8 +19,8 @@ export default class Chip8Engine {
         this.delayTimer = 255;
         this.soundTimer = 255;
 
-        this.stack = new Uint8Array(48);
-        this.gamestate = "RUNNING";
+        this.stack = [];
+        this.gameState = "RUNNING";
     };
 
     step() {
@@ -39,13 +39,25 @@ export default class Chip8Engine {
 
     executeInstruction(opcode) {
         switch (opcode[0]) {
-            case 0x0: // Clear Display
-                this.canvas.clear();
+            case 0x0:
+                switch (opcode[3]) {
+                    case 0x0:
+                        this.canvas.clear();
+                        break;
+                    case 0xE:
+                        this.romStream.jump(this.stack.pop());
+                        break;
+                }
                 break;
             case 0x1: // Jump to Address
                 const jmpAddress = opcode[1] << 8 | opcode[2] << 4 | opcode[3];
                 this.romStream.jump(jmpAddress);
-                break; 
+                break;
+            case 0x2: // Calls subroutine
+                this.stack.push(this.romStream.currentInstruction + 2);
+                const address02 = opcode[1] << 8 | opcode[2] << 4 | opcode[3];
+                this.romStream.jump(address02);
+                break;
             case 0x3: // Skip if VX = NN;
                 const registerVal03 = this.registers[opcode[1]];
                 const val03 = opcode[2] << 4 | opcode[3];
@@ -92,6 +104,16 @@ export default class Chip8Engine {
                         const hasUnderflow085 = this.registers[opcode[1]] < this.registers[opcode[2]];
                         this.registers[15] = Number(hasUnderflow085);
                         this.registers[opcode[1]] -= this.registers[opcode[2]];
+                        break;
+                    case 0x6:
+                        this.registers[opcode[1]] >>= 1;
+                        break;
+                    case 0x7:
+                        this.registers[15] = this.registers[opcode[2]] >= this.registers[opcode[1]];
+                        this.registers[opcode[1]] = this.registers[opcode[2]] - this.registers[opcode[1]];
+                        break
+                    case 0xE:
+                        this.registers[opcode[1]] <<= 1;
                         break;
                 }
                 break;
