@@ -8,7 +8,7 @@ export default class ROMLoader {
     }
 
     async loadROM(file) {
-        this.currentIndex = 512;
+        this.currentIndex = 0;
         return new Promise((resolve) => {
             const reader = new FileReader();
     
@@ -36,5 +36,9 @@ export default class ROMLoader {
 
     getAsset(size, address) {
         return new Uint8Array(this.data, address, size);
+    }
+
+    setByte(address, val) {
+        this.data[address] = val;
     }
 }

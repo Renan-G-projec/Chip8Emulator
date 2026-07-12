@@ -20,12 +20,12 @@ export default class Chip8Engine {
         this.soundTimer = 255;
 
         this.stack = new Uint8Array(48);
+        this.gamestate = "RUNNING";
     };
 
     step() {
         try {
-            console.log(this.currentInstruction);
-            this.currentInstruction = this.romStream.getOpcode();
+            if (this.gameState == "RUNNING") this.currentInstruction = this.romStream.getOpcode();
                 
             this.executeInstruction(makeOpcode(this.currentInstruction));
 
@@ -45,7 +45,7 @@ export default class Chip8Engine {
             case 0x1: // Jump to Address
                 const jmpAddress = opcode[1] << 8 | opcode[2] << 4 | opcode[3];
                 this.romStream.jump(jmpAddress);
-                break;
+                break; 
             case 0x3: // Skip if VX = NN;
                 const registerVal03 = this.registers[opcode[1]];
                 const val03 = opcode[2] << 4 | opcode[3];
@@ -104,6 +104,23 @@ export default class Chip8Engine {
                 this.registers[15] = changed; // Js transforms boolean in 0-1 vals
 
                 console.log("SDASJDHKOJ");
+                break
+            case 0xF:
+                switch (opcode[2]) {
+                    case 0x0:
+                        this.gamestate = "AWAITING";
+                        if (this.kb.isKeyPressed(opcode[1])) this.gamestate = "RUNNING";
+                        break;
+                    case 0x3: 
+                        const decimalRep = this.registers[opcode[1]].toString().padStart(3, '0');
+                        const bytesRep = [ Number(decimalRep[0]), Number(decimalRep[1]), Number(decimalRep[3]) ];
+
+                        this.romStream.setByte(this.addressRegister, bytesRep[0]);
+                        this.romStream.setByte(this.addressRegister + 1, bytesRep[1]);
+                        this.romStream.setByte(this.addressRegister + 2, bytesRep[2]);
+                        break;
+                    //case 0x5
+                }
                 break
         }
     }
