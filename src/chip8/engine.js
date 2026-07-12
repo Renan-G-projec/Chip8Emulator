@@ -125,7 +125,6 @@ export default class Chip8Engine {
                 const changed = this.canvas.drawSprite(opcode[1], opcode[2], size, sprite);
                 this.registers[15] = changed; // Js transforms boolean in 0-1 vals
 
-                console.log("SDASJDHKOJ");
                 break
             case 0xF:
                 switch (opcode[2]) {

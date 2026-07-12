@@ -16,7 +16,7 @@ export default class ROMLoader {
     
             reader.onload = () => {
                 const { result } = reader;
-                this.data = new Uint8Array(result, 1);
+                this.data = new Uint8Array(result);
                 console.log(this.data);
                 resolve();
             }
