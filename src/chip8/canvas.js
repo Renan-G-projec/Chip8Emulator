@@ -11,6 +11,8 @@ export default class Canvas {
         this.DOMCanvas = document.getElementById("main-canvas");
         
         this.canvasContext = this.DOMCanvas.getContext("2d");
+
+        this.testDraw();
     }
 
     /**
@@ -25,22 +27,27 @@ export default class Canvas {
      * @returns {Boolean} If any pixel was flipped
      */
     drawSprite(posX, posY, height, uint8array) {
-        const getindex = function (x, y) { return y * this.width + height };
-        const setPixel = function (x, y, val) { this.data[getindex(x, y)] = val}
-
         let changed = false;
 
-        for (let currentRow = 0; currentRow < height; currentRow++) {
-            for (let currentCol = 0; currentCol < 8; currentCol++) {
-                const currentX = posX + currentCol;
-                const currentY = posY + currentRow;
+        for (let row = 0; row < height; row++) {
+            for (let col = 0; col < 8; col++) {
+                const currentCanvasX = posX + col;
+                const currentCanvasY = posY + row;
 
-                const bit = (uint8array[currentRow] & (1 << currentCol)) >> currentCol;
-                if (bit != this.data[getindex(currentX, currentY)]) changed = true;
-                setPixel(currentX, currentY, bit);
+                // Clamps the drawing to the canvas
+                if (currentCanvasX < 0 || currentCanvasX >= this.width) continue; 
+                if (currentCanvasY < 0 || currentCanvasY >= this.height) continue; 
+
+                const currentCanvasIndex = currentCanvasY * this.width + currentCanvasX;
+                const canvasBitInfo = this.data[currentCanvasIndex];
+                const spriteBitInfo = (uint8array[row] & (1 << col)) >> col;
+
+                if (canvasBitInfo && spriteBitInfo) changed = true;
+                this.data[currentCanvasIndex] = canvasBitInfo ^ spriteBitInfo;
             }
         }
 
+        this.render();
         return changed;
     }
 
@@ -56,5 +63,12 @@ export default class Canvas {
                 if (this.data[y * this.width + x] > 0) this.canvasContext.fillRect(x, y, 1, 1);
             }
         }
+    }
+
+    testDraw() {
+        const testSprite = new Uint8Array([0b01010101, 0b10101010]);
+        this.drawSprite(1, 1, 2, testSprite);
+        this.drawSprite(1, 1, 2, testSprite);
+        this.render();
     }
 }
