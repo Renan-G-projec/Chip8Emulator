@@ -111,6 +111,19 @@ export default class Chip8Engine {
                         this.gamestate = "AWAITING";
                         if (this.kb.isKeyPressed(opcode[1])) this.gamestate = "RUNNING";
                         break;
+                    case 0x1:
+                        switch (opcode[3]) {
+                            case 0x5:
+                                this.delayTimer = this.registers[opcode[1]];
+                                break;
+                            case 0x8:
+                                this.soundTimer = this.registers[opcode[1]];
+                                break;
+                            case 0xE:
+                                this.addressRegister += this.registers[opcode[1]];
+                                break;
+                        }
+                        break
                     case 0x3: 
                         const decimalRep = this.registers[opcode[1]].toString().padStart(3, '0');
                         const bytesRep = [ Number(decimalRep[0]), Number(decimalRep[1]), Number(decimalRep[3]) ];
@@ -119,7 +132,22 @@ export default class Chip8Engine {
                         this.romStream.setByte(this.addressRegister + 1, bytesRep[1]);
                         this.romStream.setByte(this.addressRegister + 2, bytesRep[2]);
                         break;
-                    //case 0x5
+                    case 0x5:
+                        const numFill = opcode[1];
+                        for (let i = 0; i < numFill; i++) {
+                            this.romStream.setByte(this.addressRegister + i, this.registers[i]);
+                        }
+                        break;
+                    case 0x6:
+                        const numDump = opcode[1];
+                        const dumpedData = this.romStream.getAsset(numDump, this.addressRegister);
+
+                        for (let i = 0; i < numDump; i++) {
+                            this.registers[i] = dumpedData[i];
+                        }
+
+                        break;
+                        
                 }
                 break
         }
