@@ -95,6 +95,16 @@ export default class Chip8Engine {
                         break;
                 }
                 break;
+            case 0xD:
+                const addressRegister = this.addressRegister;
+                const size = opcode[3];
+                const sprite = this.romStream.getAsset(size, addressRegister);
+
+                const changed = this.canvas.drawSprite(opcode[1], opcode[2], size, sprite);
+                this.registers[15] = changed; // Js transforms boolean in 0-1 vals
+
+                console.log("SDASJDHKOJ");
+                break
         }
     }
 

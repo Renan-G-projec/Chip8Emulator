@@ -33,4 +33,8 @@ export default class ROMLoader {
     jump(address) {
         this.currentIndex = address;
     }
+
+    getAsset(size, address) {
+        return new Uint8Array(this.data, address, size);
+    }
 }

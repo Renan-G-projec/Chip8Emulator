@@ -24,8 +24,6 @@ loadROMBtn.addEventListener("click", async () => {
         return;
     }
     await romLoader.loadROM(romInput.files[0]);
-
-    setInterval(() => {console.log(romLoader.getOpcode())}, 1000);
 })
 
 const initGameBtn = document.getElementById("init-game-btn");
