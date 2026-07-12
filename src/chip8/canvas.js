@@ -11,8 +11,6 @@ export default class Canvas {
         this.DOMCanvas = document.getElementById("main-canvas");
         
         this.canvasContext = this.DOMCanvas.getContext("2d");
-
-        this.testDraw();
     }
 
     /**
@@ -63,12 +61,5 @@ export default class Canvas {
                 if (this.data[y * this.width + x] > 0) this.canvasContext.fillRect(x, y, 1, 1);
             }
         }
-    }
-
-    testDraw() {
-        const testSprite = new Uint8Array([0b01010101, 0b10101010]);
-        this.drawSprite(1, 1, 2, testSprite);
-        this.drawSprite(1, 1, 2, testSprite);
-        this.render();
     }
 }

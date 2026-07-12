@@ -3,7 +3,7 @@
 // Shall load the ROM on memory and return thge bytes
 export default class ROMLoader {
     constructor() {
-        this.data = null; // Chip8 have 4096 bytes.
+        this.data = new Uint8Array([0x10, 0x05, 0b01010101, 0b10101010, 0b10101010, 0b01010101]); // Chip8 have 4096 bytes.
         this.currentIndex = 512; // Starting point is aadress 512 (as we are handling with 16bits, it is half adressed.)
     }
 
@@ -24,7 +24,7 @@ export default class ROMLoader {
     }
 
     getOpcode() {
-        if (!this.data || this.data.length < 512) throw new Error("Tryed to acess byte but no ROM is loaded.");
+        if (!this.data) throw new Error("Tryed to acess byte but no ROM is loaded.");
         const opcode = this.data[this.currentIndex] << 8 | this.data[this.currentIndex + 1];
         this.currentIndex += 2;
         return opcode;

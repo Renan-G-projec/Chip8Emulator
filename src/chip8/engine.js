@@ -117,6 +117,18 @@ export default class Chip8Engine {
                         break;
                 }
                 break;
+            case 0x9: 
+                if (this.registers[opcode[1]] != this.registers[opcode[2]]) this.romStream.getOpcode();
+                break;
+            case 0xA: 
+                this.addressRegister = opcode[1] << 8 | opcode[2] << 4 | opcode[3];
+                break;
+            case 0xB:
+                this.addressRegister = (opcode[1] << 8 | opcode[2] << 4 | opcode[3]) + this.registers[0];
+                break;
+            case 0xC:
+                this.registers[opcode[1]] = Math.round(Math.random() * 255) & (opcode[2] << 4 | opcode[3]);
+                break;
             case 0xD:
                 const addressRegister = this.addressRegister;
                 const size = opcode[3];
