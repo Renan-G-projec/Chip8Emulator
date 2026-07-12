@@ -54,7 +54,7 @@ export default class Chip8Engine {
                 this.romStream.jump(jmpAddress);
                 break;
             case 0x2: // Calls subroutine
-                this.stack.push(this.romStream.currentInstruction + 2);
+                this.stack.push(this.romStream.currentIndex);
                 const address02 = opcode[1] << 8 | opcode[2] << 4 | opcode[3];
                 this.romStream.jump(address02);
                 break;
@@ -134,7 +134,7 @@ export default class Chip8Engine {
                 const size = opcode[3];
                 const sprite = this.romStream.getAsset(size, addressRegister);
 
-                const changed = this.canvas.drawSprite(opcode[1], opcode[2], size, sprite);
+                const changed = this.canvas.drawSprite(this.registers[opcode[1]], this.registers[opcode[2]], size, sprite);
                 this.registers[15] = changed; // Js transforms boolean in 0-1 vals
 
                 break
@@ -147,11 +147,12 @@ export default class Chip8Engine {
                         if (!this.kb.isKeyPressed(0x0F & this.registers[opcode[1]])) this.romStream.getOpcode();
                         break;
                 }
+                break;
             case 0xF:
                 switch (opcode[2]) {
                     case 0x0:
-                        this.gamestate = "AWAITING";
-                        if (this.kb.isKeyPressed(opcode[1])) this.gamestate = "RUNNING";
+                        this.gameState = "AWAITING";
+                        if (this.kb.isKeyPressed(opcode[1])) this.gameState = "RUNNING";
                         break;
                     case 0x1:
                         switch (opcode[3]) {
@@ -166,9 +167,12 @@ export default class Chip8Engine {
                                 break;
                         }
                         break
+                    case 0x2:
+                        this.addressRegister = this.charSprites[this.registers[opcode[1]]];
+                        break;
                     case 0x3: 
                         const decimalRep = this.registers[opcode[1]].toString().padStart(3, '0');
-                        const bytesRep = [ Number(decimalRep[0]), Number(decimalRep[1]), Number(decimalRep[3]) ];
+                        const bytesRep = [ Number(decimalRep[0]), Number(decimalRep[1]), Number(decimalRep[2]) ];
 
                         this.romStream.setByte(this.addressRegister, bytesRep[0]);
                         this.romStream.setByte(this.addressRegister + 1, bytesRep[1]);
@@ -176,15 +180,15 @@ export default class Chip8Engine {
                         break;
                     case 0x5:
                         const numFill = opcode[1];
-                        for (let i = 0; i < numFill; i++) {
+                        for (let i = 0; i <= numFill; i++) {
                             this.romStream.setByte(this.addressRegister + i, this.registers[i]);
                         }
                         break;
                     case 0x6:
                         const numDump = opcode[1];
-                        const dumpedData = this.romStream.getAsset(numDump, this.addressRegister);
+                        const dumpedData = this.romStream.getAsset(numDump + 1, this.addressRegister);
 
-                        for (let i = 0; i < numDump; i++) {
+                        for (let i = 0; i <= numDump; i++) {
                             this.registers[i] = dumpedData[i];
                         }
 

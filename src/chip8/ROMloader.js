@@ -1,26 +1,44 @@
 // Ad Maiorem Dei Gloriam!
 
+const FONTSET = [
+    0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
+    0x20, 0x60, 0x20, 0x20, 0x70, // 1
+    0xF0, 0x10, 0xF0, 0x80, 0xF0, // 2
+    0xF0, 0x10, 0xF0, 0x10, 0xF0, // 3
+    0x90, 0x90, 0xF0, 0x10, 0x10, // 4
+    0xF0, 0x80, 0xF0, 0x10, 0xF0, // 5
+    0xF0, 0x80, 0xF0, 0x90, 0xF0, // 6
+    0xF0, 0x10, 0x20, 0x40, 0x40, // 7
+    0xF0, 0x90, 0xF0, 0x90, 0xF0, // 8
+    0xF0, 0x90, 0xF0, 0x10, 0xF0, // 9
+    0xF0, 0x90, 0xF0, 0x90, 0x90, // A
+    0xE0, 0x90, 0xE0, 0x90, 0xE0, // B
+    0xF0, 0x80, 0x80, 0x80, 0xF0, // C
+    0xE0, 0x90, 0x90, 0x90, 0xE0, // D
+    0xF0, 0x80, 0xF0, 0x80, 0xF0, // E
+    0xF0, 0x80, 0xF0, 0x80, 0x80  // F
+];
+
 // Shall load the ROM on memory and return thge bytes
 export default class ROMLoader {
     constructor() {
-        this.data = new Uint8Array([0x10, 0x05, 0b01010101, 0b10101010, 0b10101010, 0b01010101]); // Chip8 have 4096 bytes.
-        this.currentIndex = 512; // Starting point is aadress 512 (as we are handling with 16bits, it is half adressed.)
+        this.data = null; // Chip8 have 4096 bytes.
+        this.currentIndex = 512;
     }
 
     async loadROM(file) {
-        this.currentIndex = 0;
-        return new Promise((resolve) => {
-            const reader = new FileReader();
-    
-            reader.readAsArrayBuffer(file);
-    
-            reader.onload = () => {
-                const { result } = reader;
-                this.data = new Uint8Array(result);
-                console.log(this.data);
-                resolve();
-            }
-        })
+        const arrbf = await file.arrayBuffer();
+        const data = new Uint8Array(arrbf);
+
+        this.data = new Uint8Array(data.byteLength + 512);
+        for (let i = 0; i < data.byteLength; i++) {
+            this.data[512 + i] = data[i];
+        }
+        console.log(this.data);
+
+        for (let i = 0; i < FONTSET.length; i++) {
+            this.data[i] = FONTSET[i];
+        }
     }
 
     getOpcode() {
