@@ -31,8 +31,6 @@ export default class Chip8Engine {
 
             this.delayTimer--;
             this.soundTimer--;
-
-            this.canvas.render();
         } catch (e) {
             alert(e);
             return;
