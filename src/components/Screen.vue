@@ -1,7 +1,9 @@
 <!-- Ad Maiorem Dei Gloriam!-->
 
 <template>
-    <canvas id="main-canvas" width="64" height="32"></canvas> <br>
+    <div class="canvas-container">
+        <canvas id="main-canvas" width="64" height="32"></canvas> <br>
+    </div>
 </template>
 
 <style scoped>

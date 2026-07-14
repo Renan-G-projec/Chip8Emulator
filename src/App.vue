@@ -4,21 +4,17 @@
 
     import FileInput from './components/FileInput.vue';
     import Screen from './components/Screen.vue';
+    import Console from './components/Console.vue';
 </script>
 
 <template>
   <div class="game-viewport">
-    <Window title="Game" img="Game" class="game-window">
-      <Screen/>
-      <button id="init-game-btn">Init Game</button>
-    </Window>
+    <Console/>
     
     <Keyboard class="keyboard"/>
   </div>
 
   <FileInput/>
-
-  <Console/>
 </template>
 
 <style scoped>
