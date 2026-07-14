@@ -4,7 +4,10 @@ export default class Keyboard {
     constructor() {
         this.keyState = new Array(16);
 
+        this.keyMapping = "1234qwerasdfzxcv";
+
         this.addDOMListeners();
+        this.addKeyboardDOMListeners();
     }
     
     addDOMListeners() {
@@ -26,6 +29,24 @@ export default class Keyboard {
             this.keyState[currentKeyId] = false;
         });
         
+    }
+
+    addKeyboardDOMListeners() {
+        document.addEventListener("keydown", (ev) => {
+            const key = this.keyMapping.indexOf(ev.key.toLowerCase());
+            if (key) {
+                this.keyState[key] = true;
+            }
+            console.log(`Key ${key} pressed!`)
+        })
+        document.addEventListener("keyup", (ev) => {
+            const key = this.keyMapping.indexOf(ev.key.toLowerCase());
+            if (key) {
+                this.keyState[key] = false;
+            }
+
+            console.log(`Key ${key} released!`)
+        })
     }
     
     isKeyPressed(keyId) {
