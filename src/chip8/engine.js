@@ -20,6 +20,8 @@ export default class Chip8Engine {
         this.stack = [];
         this.gameState = "RUNNING";
         
+        this.stepInt = null;
+        this.stepTimersInt = null;
     };
 
     step() {
@@ -217,7 +219,11 @@ export default class Chip8Engine {
     }
 
     initROM() {
-        setInterval(() => {this.step()}, 1000/700)
-        setInterval(() => {this.stepTimers()}, 1000/60);
+        if (this.stepInt) {
+            clearInterval(this.stepInt);
+            clearInterval(this.stepTimerInt);
+        }
+        this.stepInt = setInterval(() => {this.step()}, 1);
+        this.stepTimerInt = setInterval(() => {this.stepTimers()}, 1000/60);
     }
 }

@@ -21,11 +21,9 @@ export default class Keyboard {
             this.keyState[keyPressedId] = true;
             
             currentKeyId = keyPressedId;
-            console.log(`Key ${keyPressedId} pressed!`)
 
         });
         document.addEventListener("mouseup", (ev) => {
-            if (this.keyState[currentKeyId]) console.log(`Key ${currentKeyId} released!`)
             this.keyState[currentKeyId] = false;
         });
         
@@ -37,15 +35,12 @@ export default class Keyboard {
             if (key) {
                 this.keyState[key] = true;
             }
-            console.log(`Key ${key} pressed!`)
         })
         document.addEventListener("keyup", (ev) => {
             const key = this.keyMapping.indexOf(ev.key.toLowerCase());
             if (key) {
                 this.keyState[key] = false;
             }
-
-            console.log(`Key ${key} released!`)
         })
     }
     
