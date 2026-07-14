@@ -38,7 +38,7 @@ export default class Canvas {
 
                 const currentCanvasIndex = currentCanvasY * this.width + currentCanvasX;
                 const canvasBitInfo = this.data[currentCanvasIndex];
-                const spriteBitInfo = (uint8array[row] & (1 << col)) >> col;
+                const spriteBitInfo = (uint8array[row] & (0b10000000 >> col)) >> (7 - col);
 
                 if (canvasBitInfo && spriteBitInfo) changed = true;
                 this.data[currentCanvasIndex] = canvasBitInfo ^ spriteBitInfo;
