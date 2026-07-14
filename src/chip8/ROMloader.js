@@ -53,7 +53,7 @@ export default class ROMLoader {
     }
 
     getAsset(size, address) {
-        return new Uint8Array(this.data, address, size);
+        return new Uint8Array(this.data.slice(address, address + size));
     }
 
     setByte(address, val) {

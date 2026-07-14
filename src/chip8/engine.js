@@ -217,6 +217,8 @@ export default class Chip8Engine {
                         
                 }
                 break
+            default: 
+                console.log("WARNING: Opcode ", opcode, "wasn't captured.");
         }
     }
 
