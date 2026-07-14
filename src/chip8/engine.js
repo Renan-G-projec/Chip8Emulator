@@ -21,47 +21,34 @@ export default class Chip8Engine {
 
         this.stack = [];
         this.gameState = "RUNNING";
-
-        this.charSprites = [
-            0,
-            5,
-            10,
-            15,
-            20,
-            25,
-            30,
-            35,
-            40,
-            45,
-            50,
-            55,
-            60,
-            65,
-            70,
-            75
-        ]
+        
     };
 
     step() {
+        console.log(`Program Counter: ${this.romStream.currentIndex}`)
         try {
             if (this.gameState == "RUNNING") this.currentInstruction = this.romStream.getOpcode();
-                
             this.executeInstruction(makeOpcode(this.currentInstruction));
 
-            this.delayTimer--;
-            this.soundTimer--;
+            if (this.delayTimer > 0) this.delayTimer--;
+            if (this.soundTimer > 0) this.soundTimer--;
         } catch (e) {
             alert(e);
             return;
         }
     }
-
+    
     executeInstruction(opcode) {
+        if (this.romStream.currentIndex == 589) {
+            console.log("PAUSE");
+            console.log(opcode)
+        }
         switch (opcode[0]) {
             case 0x0:
                 switch (opcode[3]) {
                     case 0x0:
                         this.canvas.clear();
+                        this.canvas.render();
                         break;
                     case 0xE:
                         this.romStream.jump(this.stack.pop());
@@ -80,6 +67,7 @@ export default class Chip8Engine {
             case 0x3: // Skip if VX = NN;
                 const registerVal03 = this.registers[opcode[1]];
                 const val03 = opcode[2] << 4 | opcode[3];
+                console.log("CASE 0x3")
                 if (val03 === registerVal03) this.romStream.getOpcode();
                 break;
             case 0x4: // Skip if VX != NN;
@@ -170,8 +158,22 @@ export default class Chip8Engine {
             case 0xF:
                 switch (opcode[2]) {
                     case 0x0:
-                        this.gameState = "AWAITING";
-                        if (this.kb.isKeyPressed(opcode[1])) this.gameState = "RUNNING";
+                        if (opcode[3] == 0xA) {
+
+                            this.gameState = "AWAITING";
+                            let theresKey = false;
+                            
+                            for (let i = 0; i < 16; i++) {
+                                if (this.kb.keyState[i]) {
+                                    theresKey = true;
+                                    this.registers[opcode[1]] = i;
+                                    break;
+                                }
+                            }
+                            if (theresKey) this.gameState = "RUNNING";
+                        } else {
+                            this.registers[opcode[1]] = this.delayTimer;
+                        }
                         break;
                     case 0x1:
                         switch (opcode[3]) {
@@ -187,7 +189,7 @@ export default class Chip8Engine {
                         }
                         break
                     case 0x2:
-                        this.addressRegister = this.charSprites[this.registers[opcode[1]]];
+                        this.addressRegister = this.registers[opcode[1]] * 5;
                         break;
                     case 0x3: 
                         const decimalRep = this.registers[opcode[1]].toString().padStart(3, '0');
