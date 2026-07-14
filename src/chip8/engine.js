@@ -10,8 +10,6 @@ export default class Chip8Engine {
         this.kb = kbRef;
         this.romStream = romStream;
 
-        console.log(romStream)
-
         this.currentInstruction = 0x0000;
 
         this.registers = new Uint8Array(16);
@@ -25,13 +23,9 @@ export default class Chip8Engine {
     };
 
     step() {
-        console.log(`Program Counter: ${this.romStream.currentIndex}`)
         try {
             if (this.gameState == "RUNNING") this.currentInstruction = this.romStream.getOpcode();
             this.executeInstruction(makeOpcode(this.currentInstruction));
-
-            if (this.delayTimer > 0) this.delayTimer--;
-            if (this.soundTimer > 0) this.soundTimer--;
         } catch (e) {
             alert(e);
             return;
@@ -39,10 +33,6 @@ export default class Chip8Engine {
     }
     
     executeInstruction(opcode) {
-        if (this.romStream.currentIndex == 589) {
-            console.log("PAUSE");
-            console.log(opcode)
-        }
         switch (opcode[0]) {
             case 0x0:
                 switch (opcode[3]) {
@@ -67,7 +57,6 @@ export default class Chip8Engine {
             case 0x3: // Skip if VX = NN;
                 const registerVal03 = this.registers[opcode[1]];
                 const val03 = opcode[2] << 4 | opcode[3];
-                console.log("CASE 0x3")
                 if (val03 === registerVal03) this.romStream.getOpcode();
                 break;
             case 0x4: // Skip if VX != NN;
@@ -222,8 +211,13 @@ export default class Chip8Engine {
         }
     }
 
+    stepTimers() {
+        if (this.delayTimer > 0) this.delayTimer--;
+        if (this.soundTimer > 0) this.soundTimer--;
+    }
+
     initROM() {
-        this.step();
-        setInterval((() => {this.step()}), 1000/60);
+        setInterval(() => {this.step()}, 1000/700)
+        setInterval(() => {this.stepTimers()}, 1000/60);
     }
 }
