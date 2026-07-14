@@ -11,7 +11,7 @@ export default class Keyboard {
     }
     
     addDOMListeners() {
-        const keyboard = document.getElementById("keyboard-keys");
+        const keyboard = document.getElementById("keyboard-div");
         let currentKeyId;
         keyboard.addEventListener("mousedown", (ev) => {
             const target = ev.target;

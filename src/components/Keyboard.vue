@@ -1,58 +1,52 @@
 <!-- Ad Maiorem Dei Gloriam! -->
 
 <script setup>
-    import { onMounted } from 'vue';
-    import Window from './Window.vue';
 
-    function loadKeys() {
-        const keyboard = document.getElementById("keyboard-keys");
-        for (let keyNum = 0; keyNum < 16; keyNum++) {
-            const btn = document.createElement('button');
-            btn.classList.add("keyboard-key");
-            btn.innerText = keyNum.toString(16).toUpperCase();
-
-            keyboard.appendChild(btn);
-        }
-    }
-    onMounted(loadKeys)
 </script>
 
 <template>
-    <div class="keyboard">
-        <Window title="Hex Keyboard" img="a" class="window">
-            <div id="keyboard-keys" class="keys-container"></div>
-        </Window>
+    <div id="keyboard-div" class="keyboard">
+        <button class="keyboard-key">0</button>
+        <button class="keyboard-key">1</button>
+        <button class="keyboard-key">2</button>
+        <button class="keyboard-key">3</button>
+        <button class="keyboard-key">4</button>
+        <button class="keyboard-key">5</button>
+        <button class="keyboard-key">6</button>
+        <button class="keyboard-key">7</button>
+        <button class="keyboard-key">8</button>
+        <button class="keyboard-key">9</button>
+        <button class="keyboard-key">A</button>
+        <button class="keyboard-key">B</button>
+        <button class="keyboard-key">C</button>
+        <button class="keyboard-key">D</button>
+        <button class="keyboard-key">E</button>
+        <button class="keyboard-key">F</button>
     </div>
 </template>
 
-<style>
+<style scoped>
 
-    .window {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .window .content {
-        height: 100%;
-    }
-
-    .keys-container {
+    .keyboard {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 0.1rem;
+        grid-template-rows: repeat(4, 1fr);
 
-        height: 100%;
+        width: 100%;
+        padding: 0.2rem;
+
+        gap: 1rem;
     }
-
+    
     .keyboard-key {
         margin: 0.2rem;
         background-color: var(--keyboard-key-bg-color);
         color: var(--keyboard-key-color);
         border: none;
         border-radius: 0.2rem;
+
+        width: 100%;
+        height: 100%;
 
         cursor: pointer;
 

@@ -10,8 +10,6 @@
 <template>
   <div class="game-viewport">
     <Console/>
-    
-    <Keyboard class="keyboard"/>
   </div>
 
   <FileInput/>
@@ -24,11 +22,6 @@
       justify-content: space-around;
       height: fit-content;
       align-items: stretch;
-    }
-
-    .keyboard {
-      width: 30vw;
-      justify-self: stretch;
     }
 
     @media (width < 720px) {

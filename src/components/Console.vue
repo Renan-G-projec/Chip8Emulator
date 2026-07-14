@@ -1,26 +1,27 @@
 <!-- Ad Maiorem Dei Gloriam! -->
 <script setup>
+    import Keyboard from './Keyboard.vue';
     import Screen from './Screen.vue';
     import Window from './Window.vue';
 </script>
 
 <template>
-    <section class="console">
-        <Window title="Game" img="Game" class="game-window">
+    <Window title="Game" img="Game" class="game-window">
+        <section class="console">
             <Screen/>
             <div class="buttons-container">
                 <button id="init-game-btn">Init Game</button>
             </div>
-            
-        </Window>
-    </section>
+            <Keyboard/>
+        </section>
+    </Window>
 </template>
 
 <style scoped>
     .console {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        overflow: auto;
     }
 
     .buttons-container {
