@@ -21,13 +21,15 @@
     .console {
         display: flex;
         flex-direction: column;
-        overflow: auto;
+        overflow: visible;
+
+        align-items: center;
     }
 
     .buttons-container {
         display: flex;
         justify-content: flex-end;
-        margin: 0rem 0.4rem
+        margin: 0rem 0.4rem;
     }
 
     .buttons-container button {

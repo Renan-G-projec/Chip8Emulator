@@ -21,7 +21,7 @@
 
         border-radius: 0.2rem;
         margin: 0;
-        overflow: auto;
+        overflow: hidden;
         width: fit-content;
     }
 
@@ -44,8 +44,9 @@
         margin: 0.3rem;
         background-color: var(--window-fg-color);
         color: var(--window-content-color);
-
         height: fit-content;
+
+        overflow-x: hidden;
     }
 
 </style>
