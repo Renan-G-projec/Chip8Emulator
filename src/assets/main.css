@@ -1,5 +1,9 @@
 /* Ad Maiorem Dei Gloriam! */
 
+body {
+    background-color: var(--bg-color);
+}
+
 .keyboard .window .content {
     height: 100%;
 }
