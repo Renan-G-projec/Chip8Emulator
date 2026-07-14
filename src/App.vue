@@ -7,7 +7,17 @@
 <template>
   <Hero/>
 
-  <Console/>
+  <section class="console-container">
+    <Console/>
+  </section>
 
   <FileInput/>
 </template>
+
+<style scoped>
+  .console-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+</style>

@@ -30,7 +30,7 @@
 <style scoped>
 
     .keyboard-container {
-        width: 80%;
+        width: 95%;
         margin: 1rem;
     }
 
@@ -49,8 +49,8 @@
         border: none;
         border-radius: 0.2rem;
 
-        width: 4rem;
-        height: 4rem;
+        width: 100%;
+        aspect-ratio: 1 / 1;
 
         vertical-align: middle;
         text-align: center;
