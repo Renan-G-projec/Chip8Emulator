@@ -5,15 +5,19 @@
 :root {
     --bg-color: #0d090d;
 
-    --window-bg-color: #641e98;
-    --window-fg-color: #c999e7;
+    --window-bg-color: #23132f;
+    --window-fg-color: #0a0011;
 
     --window-content-color: #ffffff;
     --window-title-color: #ffffff;
 
-    --keyboard-key-bg-color: #702864;
-    --keyboard-key-bg-color-hover: #620d51;
+    --keyboard-key-bg-color: #360545;
+    --keyboard-key-bg-color-hover: #270432;
     --keyboard-key-color: #ffffff;
 
-    font-family: "Google Sans", sans-serif;
+
+    --geral-button-color: #ffffff;
+    --geral-button-color-hover: #888888;
+
+    font-family: "Pixelify Sans", sans-serif;
 }

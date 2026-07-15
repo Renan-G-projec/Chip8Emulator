@@ -49,21 +49,4 @@
         margin: 0rem 0.4rem;
     }
 
-    .buttons-container button {
-        background-color: transparent;
-        color: white;
-
-        border: none;
-        
-        font-weight: 400;
-        font-style: bold;
-        font-size: 1.2rem;
-        font-family: "Pixelify Sans", sans-serif;
-
-        cursor: pointer;
-    }
-
-    .buttons-container button:hover {
-        color: gray;
-    }
 </style>

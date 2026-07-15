@@ -13,7 +13,7 @@
     <div class="rom">
         <Window :title="name" :img="icon">
             <p><slot></slot></p>
-            <button class="load-rom-btn">Load ROM</button>
+            <div class="btn-container"><button class="load-rom-btn">Load ROM</button></div>
         </Window>
     </div>
 </template>

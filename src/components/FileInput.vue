@@ -14,7 +14,7 @@
 </template>
 
 <style scoped>
-    button, input {
+    input {
         font-family: "Pixelify Sans", sans-serif;
         border: none;
         background-color: transparent;
@@ -33,6 +33,7 @@
         flex-direction: row;
 
         justify-content: center;
+        align-items: center;
     }
 
     .load-file-window div {
