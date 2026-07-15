@@ -6,6 +6,8 @@ import ROMLoader from './chip8/ROMloader.js'
 import Chip8Engine from './chip8/engine.js'
 import Canvas from './chip8/canvas.js'
 
+import { currentROM } from './assets/js/globalState.js'
+
 const app = createApp(App)
 
 app.mount('#app')
@@ -24,6 +26,9 @@ loadROMBtn.addEventListener("click", async () => {
         return;
     }
     await romLoader.loadROM(romInput.files[0]);
+
+    currentROM.value.romLoaded = true;
+    currentROM.value.romName = romInput.files[0].name;
 })
 
 const initGameBtn = document.getElementById("init-game-btn");

@@ -3,11 +3,16 @@
     import Keyboard from './Keyboard.vue';
     import Screen from './Screen.vue';
     import Window from './Window.vue';
+
+    import { currentROM } from '@/assets/js/globalState.js';
 </script>
 
 <template>
     <Window title="Game" img="Game" class="game-window">
         <section class="console">
+            <div class="rom-name-container">
+                <p class="loaded-rom-label">Loaded ROM: <span :class="currentROM.romLoaded ? 'green' : 'red'">{{ currentROM.romName }}</span></p>
+            </div>
             <Screen/>
             <div class="buttons-container">
                 <button id="init-game-btn">Init Game</button>
@@ -24,6 +29,18 @@
         overflow: visible;
 
         align-items: center;
+    }
+
+    .loaded-rom-label {
+        font-family: "Pixelify Sans", sans-serif;
+    }
+
+    .red {
+        color: red;
+    }
+
+    .green {
+        color: greenyellow
     }
 
     .buttons-container {
