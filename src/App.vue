@@ -2,6 +2,8 @@
     import FileInput from './components/FileInput.vue';
     import Console from './components/Console.vue';
     import Hero from './components/Hero.vue';
+
+    import ROM from './components/ROM.vue';
 </script>
 
 <template>
@@ -12,6 +14,8 @@
   </section>
 
   <FileInput/>
+
+  <ROM name="Invaders" icon="a">Asdj</ROM>
 </template>
 
 <style scoped>
