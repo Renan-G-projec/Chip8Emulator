@@ -19,7 +19,7 @@
     .window {
         background-color: var(--window-bg-color);
 
-        border-radius: 0.2rem;
+        border: 4px solid white;
         margin: 0;
         overflow: hidden;
         width: fit-content;
