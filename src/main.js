@@ -19,6 +19,12 @@ const engine = new Chip8Engine(canvas, kb, romLoader);
 
 const loadROMBtn = document.getElementById("load-rom-btn");
 const romInput = document.getElementById("rom-file-input");
+const initGameBtn = document.getElementById("init-game-btn");
+const romLabel = document.getElementById("rom-file-input-label");
+
+romInput.addEventListener("change", (ev) => {
+    romLabel.innerText = ev.target.files[0].name;
+});
 
 loadROMBtn.addEventListener("click", async () => {
     if (!romInput.files[0]) {
@@ -31,7 +37,6 @@ loadROMBtn.addEventListener("click", async () => {
     currentROM.value.romName = romInput.files[0].name;
 })
 
-const initGameBtn = document.getElementById("init-game-btn");
 initGameBtn.addEventListener("click", () => {
     if (!romLoader.data) {
         alert("No ROM loaded yet. Please Load one.");

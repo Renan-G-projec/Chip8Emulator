@@ -9,7 +9,7 @@
         <Window title="Load ROM" img="a" class="load-file-window">
             <div class="file-container">
                 <input type="file" id="rom-file-input">
-                <label for="rom-file-input" class="custom-upload">Upload a file</label>
+                <label for="rom-file-input" class="custom-upload" id="rom-file-input-label">Upload a file</label>
             </div>
             <div class="btn-container">
                 <button id="load-rom-btn">Load ROM</button>
