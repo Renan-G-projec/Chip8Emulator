@@ -23,6 +23,7 @@ loadROMBtn.addEventListener("click", async () => {
         return;
     }
     await romLoader.loadROM(romInput.files[0]);
+    console.log(`Loaded this rom: ${romLoader.data.toBase64()}`);
 
     currentROM.value.romLoaded = true;
     currentROM.value.romName = romInput.files[0].name;
