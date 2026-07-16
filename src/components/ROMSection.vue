@@ -60,23 +60,68 @@ import ROM from './ROM.vue';
 </script>
 
 <template>
-    <div class="roms-section">
-        <div class="rom">
-            <FileInput/>
+    <section class="roms-section">
+        <div class="rom-header">
+            <h2 id="roms">ROMs</h2>
         </div>
-        <div class="rom" v-for="rom in roms">
-            <ROM :name="rom.title" :icon="rom.icon" :content="rom.content">
-                {{ rom.description }} 
-                <br>
-                <br>
-                {{ rom.credits }}
-            </ROM>
+        <div class="roms">
+            <div class="rom">
+                <FileInput/>
+            </div>
+            <div class="rom" v-for="rom in roms">
+                <ROM :name="rom.title" :icon="rom.icon" :content="rom.content">
+                    {{ rom.description }} 
+                    <br>
+                    <br>
+                    {{ rom.credits }}
+                </ROM>
+            </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <style>
+
     .roms-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .rom-header {
+        width: 100%;
+        color: white;
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    h2 {
+        cursor: pointer;
+        position: relative;
+    }
+
+    h2::before {
+        content: "";
+        position: absolute;
+
+        width: 0px;
+        height: 5px;
+
+        bottom: -5px;
+        left: 0px;
+
+        background-color: white;
+
+        transition: width 0.2s ease-in-out;
+    }
+
+    h2:hover::before {
+        width: 100%;
+    }
+
+    .roms {
         display: grid;
         justify-items: center;
         gap: 2rem;
@@ -86,12 +131,12 @@ import ROM from './ROM.vue';
     }
 
     @media (width < 1024px) {
-        .roms-section {
+        .roms {
             grid-template-columns: 20rem 20rem;
         }
     }
     @media (width < 720px) {
-        .roms-section {
+        .roms {
             grid-template-columns: 20rem;
         }
     }
