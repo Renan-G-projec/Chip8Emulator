@@ -5,38 +5,42 @@
 </script>
 
 <template> 
-    <Window title="Load ROM" img="a" class="load-file-window">
-        <div class="container">
-            <input type="file" id="rom-file-input">
-            <button id="load-rom-btn">Load ROM</button>
-        </div>
-    </Window>
+    <div class="file-input">
+        <Window title="Load ROM" img="a" class="load-file-window">
+            <div class="file-container">
+                <input type="file" id="rom-file-input">
+                <label for="rom-file-input" class="custom-upload">Upload a file</label>
+            </div>
+            <div class="btn-container">
+                <button id="load-rom-btn">Load ROM</button>
+            </div>
+        </Window>
+    </div>
 </template>
 
 <style scoped>
-    input {
-        font-family: "Pixelify Sans", sans-serif;
-        border: none;
-        background-color: transparent;
-        color: white;
+    .file-input {
+        width: var(--rom-card-width);
+    }
 
+    input {
+        display: none;
+    }
+
+    .file-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .custom-upload {
+        display: inline-block;
+        padding: 10px 0px;
+        color: white;
         cursor: pointer;
     }
 
-    button:hover {
-        color: grey;
-    }
-
-    .container {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-
-        justify-content: center;
-        align-items: center;
-    }
-
-    .load-file-window div {
-        padding: 1rem;
+    .custom-upload:hover {
+        color: var(--geral-button-color-hover);
     }
 </style>

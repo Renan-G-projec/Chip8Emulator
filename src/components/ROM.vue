@@ -20,6 +20,6 @@
 
 <style scoped>
     .rom {
-        width: 20rem;
+        width: var(--rom-card-width);
     }
 </style>

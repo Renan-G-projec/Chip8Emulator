@@ -22,7 +22,7 @@
         border: 4px solid white;
         margin: 0;
         overflow: hidden;
-        width: fit-content;
+        max-width: 100%;
     }
 
     .header {

@@ -19,5 +19,7 @@
     --geral-button-color: #ffffff;
     --geral-button-color-hover: #888888;
 
+    --rom-card-width: 20rem;
+
     font-family: "Pixelify Sans", sans-serif;
 }
