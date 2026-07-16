@@ -5,7 +5,7 @@
 
     defineProps({
         name: String,
-        icon: String
+        icon: String,
     })
 </script>
 
