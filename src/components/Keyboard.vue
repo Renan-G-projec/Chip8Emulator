@@ -1,7 +1,13 @@
 <!-- Ad Maiorem Dei Gloriam! -->
 
 <script setup>
+    import { kb } from '@/chip8/context';
+    import { onMounted } from 'vue';
 
+    onMounted(() => {
+        kb.addDOMListeners();
+        kb.addKeyboardDOMListeners();
+    })
 </script>
 
 <template>

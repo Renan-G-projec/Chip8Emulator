@@ -1,5 +1,14 @@
 <!-- Ad Maiorem Dei Gloriam!-->
 
+<script setup>
+    import { canvas } from '@/chip8/context';
+    import { onMounted } from 'vue';
+
+    onMounted(() => {
+        canvas.getContext();
+    })
+</script>
+
 <template>
     <div class="canvas-container">
         <canvas id="main-canvas" width="64" height="32"></canvas> <br>

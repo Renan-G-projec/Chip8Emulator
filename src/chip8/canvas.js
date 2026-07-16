@@ -8,8 +8,13 @@ export default class Canvas {
 
         this.data = new Uint8Array(this.width * this.height);
         this.fillColor = "white";
+        this.DOMCanvas = null;
+
+        this.canvasContext = null;
+    }
+
+    getContext() {
         this.DOMCanvas = document.getElementById("main-canvas");
-        
         this.canvasContext = this.DOMCanvas.getContext("2d");
     }
 

@@ -5,9 +5,6 @@ export default class Keyboard {
         this.keyState = new Array(16);
 
         this.keyMapping = "1234qwerasdfzxcv";
-
-        this.addDOMListeners();
-        this.addKeyboardDOMListeners();
     }
     
     addDOMListeners() {

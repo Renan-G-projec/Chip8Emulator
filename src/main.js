@@ -1,21 +1,12 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-import Keyboard from './chip8/keyboard.js'
-import ROMLoader from './chip8/ROMloader.js'
-import Chip8Engine from './chip8/engine.js'
-import Canvas from './chip8/canvas.js'
-
 import { currentROM } from './assets/js/globalState.js'
 
 const app = createApp(App)
-
 app.mount('#app')
 
-const canvas = new Canvas();
-const kb = new Keyboard();
-const romLoader = new ROMLoader();
-const engine = new Chip8Engine(canvas, kb, romLoader);
+import { canvas, kb, romLoader, engine} from './chip8/context.js'
 
 const loadROMBtn = document.getElementById("load-rom-btn");
 const romInput = document.getElementById("rom-file-input");
