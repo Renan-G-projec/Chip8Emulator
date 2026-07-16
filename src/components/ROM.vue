@@ -3,10 +3,15 @@
 <script setup>
     import Window from "./Window.vue";
 
-    defineProps({
+    const properties = defineProps({
         name: String,
         icon: String,
+        content: String
     })
+
+    function loadRom() {
+        
+    }
 </script>
 
 <template>
