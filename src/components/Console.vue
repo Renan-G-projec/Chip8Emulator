@@ -29,10 +29,23 @@
         overflow: visible;
 
         align-items: center;
+
+        width: var(--console-width);
+    }
+
+    .rom-name-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 
     .loaded-rom-label {
         font-family: "Pixelify Sans", sans-serif;
+
+        text-align: center;
+        text-wrap: wrap;
+
+        margin: 0;
     }
 
     .red {
