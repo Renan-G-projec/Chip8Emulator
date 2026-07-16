@@ -6,6 +6,10 @@ export default class Keyboard {
 
         this.keyMapping = "1234qwerasdfzxcv";
     }
+
+    reset() {
+        this.keyState.fill(0);
+    }
     
     addDOMListeners() {
         const keyboard = document.getElementById("keyboard-div");

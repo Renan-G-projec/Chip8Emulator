@@ -24,6 +24,19 @@ export default class Chip8Engine {
         this.stepTimersInt = null;
     };
 
+    reset() {
+        clearInterval(this.stepInt);
+        clearInterval(this.stepTimersInt);
+
+        this.stepInt = null;
+        this.stepTimersInt = null;
+
+        this.currentInstruction = 0x0000;
+        this.kb.reset();
+        this.romStream.reset();
+        this.canvas.reset();
+    }
+
     step() {
         try {
             if (this.gameState == "RUNNING") this.currentInstruction = this.romStream.getOpcode();
@@ -220,10 +233,9 @@ export default class Chip8Engine {
 
     initROM() {
         if (this.stepInt) {
-            clearInterval(this.stepInt);
-            clearInterval(this.stepTimerInt);
+            this.reset();
         }
         this.stepInt = setInterval(() => {this.step()}, 1);
-        this.stepTimerInt = setInterval(() => {this.stepTimers()}, 1000/60);
+        this.stepTimersInt = setInterval(() => {this.stepTimers()}, 1000/60);
     }
 }

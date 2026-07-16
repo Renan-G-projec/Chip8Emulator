@@ -26,7 +26,12 @@ export default class ROMLoader {
         this.currentIndex = 512;
     }
 
+    reset() {
+        this.currentIndex = 512;
+    }
+
     async loadROM(file) {
+
         const arrbf = await file.arrayBuffer();
         const data = new Uint8Array(arrbf);
 

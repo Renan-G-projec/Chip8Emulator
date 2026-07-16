@@ -13,6 +13,11 @@ export default class Canvas {
         this.canvasContext = null;
     }
 
+    reset() {
+        this.clear();
+        this.render();
+    }
+
     getContext() {
         this.DOMCanvas = document.getElementById("main-canvas");
         this.canvasContext = this.DOMCanvas.getContext("2d");
@@ -45,7 +50,7 @@ export default class Canvas {
                 const canvasBitInfo = this.data[currentCanvasIndex];
                 const spriteBitInfo = (uint8array[row] & (0b10000000 >> col)) >> (7 - col);
 
-                if (canvasBitInfo && spriteBitInfo) changed = true;
+                if (canvasBitInfo == 1 && spriteBitInfo == 1) changed = true;
                 this.data[currentCanvasIndex] = canvasBitInfo ^ spriteBitInfo;
             }
         }

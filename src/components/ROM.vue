@@ -2,7 +2,7 @@
 
 <script setup>
     import Window from "./Window.vue";
-    import { romLoader } from "@/chip8/context.js";
+    import { engine, romLoader } from "@/chip8/context.js";
     import { currentROM } from "@/assets/js/globalState.js";
 
     const properties = defineProps({
@@ -15,6 +15,8 @@
         romLoader.loadROMFromBase64(properties.content);
         currentROM.value.romLoaded = true;
         currentROM.value.romName = properties.name;
+
+        engine.reset();
     }
 </script>
 
