@@ -2,6 +2,8 @@
 
 <script setup>
     import Window from "./Window.vue";
+    import { romLoader } from "@/chip8/context.js";
+    import { currentROM } from "@/assets/js/globalState.js";
 
     const properties = defineProps({
         name: String,
@@ -9,8 +11,10 @@
         content: String
     })
 
-    function loadRom() {
-        
+    async function loadRom() {
+        romLoader.loadROMFromBase64(properties.content);
+        currentROM.value.romLoaded = true;
+        currentROM.value.romName = properties.name;
     }
 </script>
 
@@ -18,7 +22,7 @@
     <div class="rom">
         <Window :title="name" :img="icon">
             <p><slot></slot></p>
-            <div class="btn-container"><button class="load-rom-btn">Load ROM</button></div>
+            <div class="btn-container"><button class="load-rom-btn" @click="loadRom()">Load ROM</button></div>
         </Window>
     </div>
 </template>

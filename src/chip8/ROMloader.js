@@ -41,6 +41,10 @@ export default class ROMLoader {
         }
     }
 
+    loadROMFromBase64(string) {
+        this.data = Uint8Array.fromBase64(string);
+    }
+
     getOpcode() {
         if (!this.data) throw new Error("Tryed to acess byte but no ROM is loaded.");
         const opcode = this.data[this.currentIndex] << 8 | this.data[this.currentIndex + 1];
