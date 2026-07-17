@@ -22,7 +22,12 @@
         border: 4px solid white;
         margin: 0;
         overflow: hidden;
-        max-width: 100%;
+
+        height: inherit;
+
+        display: flex;
+        flex-direction: column;
+        justify-items: stretch;
     }
 
     .header {
@@ -44,9 +49,15 @@
         margin: 0.3rem;
         background-color: var(--window-fg-color);
         color: var(--window-content-color);
-        height: fit-content;
+
+        height: 100%;
 
         overflow-x: hidden;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: space-between;
     }
 
 </style>

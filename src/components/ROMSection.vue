@@ -65,17 +65,15 @@ import ROM from './ROM.vue';
             <h2 id="roms">ROMs</h2>
         </div>
         <div class="roms">
-            <div class="rom">
-                <FileInput/>
-            </div>
-            <div class="rom" v-for="rom in roms">
-                <ROM :name="rom.title" :icon="rom.icon" :content="rom.content">
-                    {{ rom.description }} 
-                    <br>
-                    <br>
-                    {{ rom.credits }}
-                </ROM>
-            </div>
+        
+            <FileInput class="rom"/>
+            
+            <ROM class="rom" v-for="rom in roms" :name="rom.title" :icon="rom.icon" :content="rom.content">
+                {{ rom.description }} 
+                <br>
+                <br>
+                {{ rom.credits }}
+            </ROM>
         </div>
     </section>
 </template>
@@ -125,9 +123,15 @@ import ROM from './ROM.vue';
         display: grid;
         justify-items: center;
         gap: 2rem;
+
         grid-template-columns: repeat(3, 20rem);
+        align-items: stretch;
 
         min-width: fit-content;
+    }
+
+    .rom {
+        height: 100%;
     }
 
     @media (width < 1024px) {
