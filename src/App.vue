@@ -1,10 +1,9 @@
 <script setup>
-    import FileInput from './components/FileInput.vue';
     import Console from './components/Console.vue';
     import Hero from './components/Hero.vue';
 
-    import ROM from './components/ROM.vue';
-import ROMSection from './components/ROMSection.vue';
+    import ROMSection from './components/ROMSection.vue';
+    import About from './components/About.vue';
 </script>
 
 <template>
@@ -16,6 +15,10 @@ import ROMSection from './components/ROMSection.vue';
 
   <section class="roms-container">
     <ROMSection/>
+  </section>
+
+  <section class="about-chip8">
+    <About/>
   </section>
 </template>
 
@@ -29,5 +32,12 @@ import ROMSection from './components/ROMSection.vue';
   .roms-container {
     display: flex;
     justify-content: center;
+  }
+
+  .about-chip8 {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
   }
 </style>
