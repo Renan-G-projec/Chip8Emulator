@@ -95,30 +95,6 @@ import ROM from './ROM.vue';
         justify-content: center;
     }
 
-    h2 {
-        cursor: pointer;
-        position: relative;
-    }
-
-    h2::before {
-        content: "";
-        position: absolute;
-
-        width: 0px;
-        height: 5px;
-
-        bottom: -5px;
-        left: 0px;
-
-        background-color: white;
-
-        transition: width 0.2s ease-in-out;
-    }
-
-    h2:hover::before {
-        width: 100%;
-    }
-
     .roms {
         display: grid;
         justify-items: center;
