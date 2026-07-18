@@ -37,11 +37,13 @@
 
     .keyboard-container {
         width: 95%;
+        max-width: 80vw;
         margin: 1rem;
     }
 
     .keyboard {
         display: grid;
+        max-width: 80vw;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(4, 1fr);
 
