@@ -6,7 +6,7 @@ import { currentROM } from './assets/js/globalState.js'
 const app = createApp(App)
 app.mount('#app')
 
-import { canvas, kb, romLoader, engine} from './chip8/context.js'
+import { canvas, kb, romLoader, engine, speakers} from './chip8/context.js'
 
 const loadROMBtn = document.getElementById("load-rom-btn");
 const romInput = document.getElementById("rom-file-input");
@@ -34,5 +34,6 @@ initGameBtn.addEventListener("click", () => {
         alert("No ROM loaded yet. Please Load one.");
         return;
     }
+    speakers.init();
     engine.initROM();
 })

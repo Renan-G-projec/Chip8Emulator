@@ -5,7 +5,7 @@ function makeOpcode(uint16) {
 }
 
 export default class Chip8Engine {
-    constructor(canvasRef, kbRef, romStream) {
+    constructor(canvasRef, kbRef, romStream, speakersRef) {
         this.canvas = canvasRef;
         this.kb = kbRef;
         this.romStream = romStream;
@@ -14,14 +14,16 @@ export default class Chip8Engine {
 
         this.registers = new Uint8Array(16);
 
-        this.delayTimer = 255;
-        this.soundTimer = 255;
+        this.delayTimer = 0;
+        this.soundTimer = 0;
 
         this.stack = [];
         this.gameState = "RUNNING";
         
         this.stepInt = null;
         this.stepTimersInt = null;
+
+        this.speakers = speakersRef;
     };
 
     reset() {
@@ -228,7 +230,12 @@ export default class Chip8Engine {
 
     stepTimers() {
         if (this.delayTimer > 0) this.delayTimer--;
-        if (this.soundTimer > 0) this.soundTimer--;
+        if (this.soundTimer > 0) {
+            this.soundTimer--;
+            this.speakers.startPlaying();
+        } else {
+            this.speakers.stopPlaying();
+        }
     }
 
     initROM() {
