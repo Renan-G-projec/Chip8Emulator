@@ -23,6 +23,7 @@
 <template>
     <div class="hero">
         <h1>{{  heroString }}</h1>
+        <p><span class="yellow">Warning:</span> Some ROMs can have <span class="yellow">FLASHING LIGHTS</span></p>
     </div>
 </template>
 
@@ -36,5 +37,15 @@
         font-family: "Pixelify Sans", sans-serif;
         font-size: 4rem;
         color: white;
+    }
+
+    .yellow {
+        color: yellow;
+        font-size: 1.3rem;
+    }
+
+    p {
+        color: white;
+        margin-bottom: 4rem;
     }
 </style>
