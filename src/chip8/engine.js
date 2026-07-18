@@ -108,19 +108,19 @@ export default class Chip8Engine {
                         break;
                     case 0x4: // Add with overflow flag
                         const sum084 = this.registers[opcode[1]] + this.registers[opcode[2]];
-                        this.registers[15] = Number(sum084 > 255);
+                        this.registers[15] = sum084 > 255 ? 1 : 0;
                         this.registers[opcode[1]] = sum084;
                         break;
                     case 0x5: // Subtracts with underflow flag
                         const hasUnderflow085 = this.registers[opcode[1]] < this.registers[opcode[2]];
-                        this.registers[15] = Number(hasUnderflow085);
+                        this.registers[15] = !hasUnderflow085 ? 1 : 0;
                         this.registers[opcode[1]] -= this.registers[opcode[2]];
                         break;
                     case 0x6:
                         this.registers[opcode[1]] >>= 1;
                         break;
                     case 0x7:
-                        this.registers[15] = this.registers[opcode[2]] >= this.registers[opcode[1]];
+                        this.registers[15] = this.registers[opcode[2]] >= this.registers[opcode[1]] ? 1 : 0;
                         this.registers[opcode[1]] = this.registers[opcode[2]] - this.registers[opcode[1]];
                         break
                     case 0xE:

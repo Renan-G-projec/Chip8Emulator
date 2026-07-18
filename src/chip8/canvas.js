@@ -35,7 +35,7 @@ export default class Canvas {
      * @returns {Boolean} If any pixel was flipped
      */
     drawSprite(posX, posY, height, uint8array) {
-        let changed = false;
+        let changed = 0;
 
         for (let row = 0; row < height; row++) {
             for (let col = 0; col < 8; col++) {
@@ -50,8 +50,9 @@ export default class Canvas {
                 const canvasBitInfo = this.data[currentCanvasIndex];
                 const spriteBitInfo = (uint8array[row] & (0b10000000 >> col)) >> (7 - col);
 
-                if (canvasBitInfo == 1 && spriteBitInfo == 1) changed = true;
                 this.data[currentCanvasIndex] = canvasBitInfo ^ spriteBitInfo;
+
+                if (spriteBitInfo > 0 && canvasBitInfo > 0) changed = true;
             }
         }
 
