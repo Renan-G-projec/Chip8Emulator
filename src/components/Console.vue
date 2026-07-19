@@ -8,7 +8,7 @@
 </script>
 
 <template>
-    <Window title="Game" img="Game" class="game-window">
+    <Window title="Game" class="game-window">
         <section class="console">
             <div class="rom-name-container">
                 <p class="loaded-rom-label">Loaded ROM: <span :class="currentROM.romLoaded ? 'green' : 'red'">{{ currentROM.romName }}</span></p>

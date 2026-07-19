@@ -68,7 +68,7 @@ import ROM from './ROM.vue';
         
             <FileInput class="rom"/>
             
-            <ROM class="rom" v-for="rom in roms" :name="rom.title" :icon="rom.icon" :content="rom.content">
+            <ROM class="rom" v-for="rom in roms" :name="rom.title" :content="rom.content">
                 {{ rom.description }} 
                 <br>
                 <br>

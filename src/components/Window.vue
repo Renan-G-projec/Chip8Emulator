@@ -6,7 +6,7 @@
     <div class="window">
         <div class="header">
             <h3>{{ title }}</h3> 
-            <img :src="img" :alt="title">
+            <img v-if="img" :src="img" :alt="title">
         </div>
         
         <div class="content">
