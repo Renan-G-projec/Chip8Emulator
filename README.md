@@ -7,6 +7,11 @@ A simple but smooth CHIP 8 emulator
 ## EPILEPSY WARNING:
 Chip-8 uses a bit flip logic. As the old hardware couldn't handle soft-movements, it flickers with a fast movement, making flashing lights.
 
+## How to use
+1. Load or upload a ROM by pressing the button below the card 'LOAD ROM'.
+2. Initialize the ROM by pressing the button below the canvas
+3. Play the game bby using the virtual keyboard or the physical one! (Keymap: 1234qwertasdfzxcv = 4x4 square on QWERTY keyboards)
+
 ## Features
 - Sound emulating
 - Code interpreting
