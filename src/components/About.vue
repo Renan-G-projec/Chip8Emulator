@@ -22,6 +22,9 @@
             <span class="cyan">Assembly Programming Language</span> by chip8, considering the small amount of instructions.
             Is a great start also for coding in raw <span class="cyan">Machine Language</span>.
         </p>
+        <p>
+            Github source for this emulator: <span class="cyan"><a href="https://github.com/Renan-G-projec/Chip8Emulator">https://github.com/Renan-G-projec/Chip8Emulator</a></span>
+        </p>
     </div>
 </template>
 
@@ -53,5 +56,9 @@
 
     .cyan {
         color: cyan;
+    }
+
+    a {
+        color: inherit;
     }
 </style>
