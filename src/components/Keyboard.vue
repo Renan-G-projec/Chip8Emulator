@@ -36,19 +36,27 @@
 <style scoped>
 
     .keyboard-container {
-        width: 95%;
-        max-width: 80vw;
-        margin: 1rem;
+        width: 100%;
+        width: calc(100% - 0.8rem);
+
+        min-width: auto;
+        min-height: auto;
+
+        flex-shrink: 0;
     }
 
     .keyboard {
         display: grid;
-        max-width: 80vw;
+
+        width: auto;
+
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(4, 1fr);
+        grid-template-rows: auto;
 
         gap: 0.4rem;
         justify-items: center;
+        
+        box-sizing: border-box;
     }
     
     .keyboard-key {
@@ -56,6 +64,8 @@
         color: var(--keyboard-key-color);
         border: none;
         border-radius: 0.2rem;
+
+        margin: 0;
 
         width: 100%;
         aspect-ratio: 1 / 1;
@@ -65,7 +75,7 @@
 
         cursor: pointer;
 
-        transition: background-color 0.2 ease-in-out;
+        transition: background-color 0.1s ease-in-out;
     }
 
     .keyboard-key:hover {

@@ -16,15 +16,18 @@
 </template>
 
 <style scoped>
+    .canvas-container {
+        width: 100%;
+    }
     #main-canvas {
         background-color: black;
         border-radius: 0.2rem;
-        width: 20rem;
+        width: 100%;
         aspect-ratio: 2 / 1;
 
         image-rendering: pixelated;
 
-        margin: 0.4rem 0.4rem 0.4rem 0.4rem;
+        margin: 0;
         vertical-align: bottom;
 
         flex-shrink: 0;

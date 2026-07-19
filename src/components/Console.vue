@@ -32,9 +32,12 @@
 
         flex-shrink: 0;
         width: 100%;
-        height: 100%;
+        height: max-content;
 
         width: var(--console-width);
+        padding: 1rem;
+
+        box-sizing: border-box;
     }
 
     .rom-name-container {
