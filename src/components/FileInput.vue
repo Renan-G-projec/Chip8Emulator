@@ -6,7 +6,7 @@
 
 <template> 
     <div class="file-input">
-        <Window title="Load ROM" img="a" class="load-file-window">
+        <Window title="Load ROM" class="load-file-window">
             <div class="file-container">
                 <input type="file" id="rom-file-input">
                 <label for="rom-file-input" class="custom-upload" id="rom-file-input-label">Upload a file</label>
