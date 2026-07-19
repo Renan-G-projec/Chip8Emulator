@@ -20,17 +20,19 @@
         background-color: black;
         border-radius: 0.2rem;
         width: 20rem;
-        height: calc(20rem / 2);
+        aspect-ratio: 2 / 1;
 
         image-rendering: pixelated;
 
         margin: 0.4rem 0.4rem 0.4rem 0.4rem;
         vertical-align: bottom;
+
+        flex-shrink: 0;
     }
 
     @media (width < 720px) {
         #main-canvas {
-            width: 80vw;
+            max-width: 80vw;
         }
     }
 </style>
